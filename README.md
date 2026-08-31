@@ -4,9 +4,9 @@
 
 This project implements a parameterized Synchronous FIFO (First-In-First-Out) memory using Verilog HDL.
 
-A FIFO stores data in such a way that the first data written into the memory is the first data read from it.
+A FIFO stores data such that the first data written into the memory is the first data read from it.
 
-The design uses a single clock for both read and write operations.
+The design uses a single synchronous clock for both read and write operations.
 
 ## ⚙️ Specifications
 
@@ -20,6 +20,17 @@ The design uses a single clock for both read and write operations.
 | Write Operation | Supported |
 | Full Flag | Supported |
 | Empty Flag | Supported |
+
+## ✨ Features
+
+- Parameterized FIFO design
+- 8-bit data width
+- 16-depth memory
+- Synchronous read and write operations
+- Active-low reset
+- Full and Empty status flags
+- FIFO ordering verification
+- Behavioral simulation using Vivado
 
 ## 🏗️ FIFO Architecture
 
@@ -37,11 +48,11 @@ The FIFO consists of:
 
 ### Write Operation
 
-When `wr_en` is high and the FIFO is not full, input data is stored in the FIFO memory.
+When `wr_en` is high and the FIFO is not full, input data is stored in the FIFO memory and the write pointer is incremented.
 
 ### Read Operation
 
-When `rd_en` is high and the FIFO is not empty, data is read from the FIFO memory.
+When `rd_en` is high and the FIFO is not empty, data is read from the FIFO memory and the read pointer is incremented.
 
 ### Full Condition
 
@@ -53,7 +64,7 @@ The `empty` flag becomes high when there is no data available in the FIFO.
 
 ## 🧪 Verification
 
-The design was verified using a Verilog testbench in Xilinx Vivado.
+The design was verified using a Verilog testbench in Xilinx Vivado 2020.2.
 
 The testbench verifies:
 
@@ -70,7 +81,7 @@ The following 16 values were written into the FIFO:
 
 `10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160`
 
-The values were successfully read in the same order.
+The values were successfully read in the same First-In-First-Out order.
 
 ## 📊 Simulation Result
 
@@ -102,4 +113,6 @@ Synchronous-FIFO/
 ├── simulation/
 │   └── waveform.png
 │
+├── .gitignore
+├── LICENSE
 └── README.md
